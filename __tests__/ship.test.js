@@ -1,4 +1,5 @@
 const Ship = require('../src/ship');
+const Port = require('../src/port');
 
 describe('constructor', () => {
     it('returns an object', () => {
@@ -6,15 +7,28 @@ describe('constructor', () => {
     })
 
     it('has a starting port', () => {
-        const ship = new Ship('Dover');
-        expect(ship.startingPort).toEqual('Dover')
+        const port = new Port('Dover');
+        const ship = new Ship(port);
+        expect(ship.currentPort).toEqual(port);
     })
 
     it('can set sail', () => {
-        const ship = new Ship('Dover');
+        const port = new Port('Dover');
+        const ship = new Ship(port);
 
         ship.setSail();
 
-        expect(ship.startingPort).toBeFalsy();
+        expect(ship.currentPort).toBeFalsy();
     })
+
+    it('can dock at different ports', () => {
+        const dover = new Port('Dover');
+        const ship = new Ship(dover);
+
+        const calais = new Port('Calais');
+        ship.dock(calais);
+
+        expect(ship.currentPort).toBe(calais);
+    })
+
 })
