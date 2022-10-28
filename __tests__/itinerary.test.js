@@ -1,16 +1,23 @@
 const Itinerary = require('../src/itinerary')
 const Port = require('../src/port')
 
-describe('constructor', () => {
-    it('return the object', () => {
+describe('itinerary', () => {
+    let dover;
+    let calais;
+    let itinerary;
+
+    beforeEach(() => {
+        dover = new Port('Dover');
+        calais = new Port('Calais');
+        itinerary = new Itinerary([dover, calais]);
+    })
+
+    it('can be instantiated', () => {
+
         expect(new Itinerary()).toBeInstanceOf(Object);
     })
 
-    it('can has a ports', () => {
-       const dover = new Port('Dover');
-       const calais = new Port('Calais');
-
-       const itinerary = new Itinerary([dover, calais]);
+    it('can check the ports in array', () => {
 
        expect(itinerary.ports).toEqual([dover, calais]);
     })
