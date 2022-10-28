@@ -2,25 +2,30 @@ const Port = require('../src/port')
 const Ship = require('../src/ship')
 
 describe('constructor', () => {
-    it('return the object', () => {
-        expect(new Port()).toBeInstanceOf(Object);
-    })
+    describe('with port', () => {
+        let port;
 
-    it('has the name for the port', () => {
-        const port = new Port('Liverpool')
-        expect(port.name).toEqual('Liverpool');
+        beforeEach(() => {
+            port = new Port('Liverpool')
+        });
 
-        const port1 = new Port('London')
-        expect(port1.name).toEqual('London');
-    })
+        it('can be instantiated', () => {
+            expect(new Port()).toBeInstanceOf(Object);
+        })
 
-    it('can add a ship to the port', () => {
-        const port = new Port('Dover');
-        const ship = {};
 
-        port.addShip(ship);
+        it('has the name for the port', () => {
+            expect(port.name).toEqual('Liverpool');
+        });
 
-        expect(port.ships).toContain(ship);
-    });
+        it('can add a ship to the port', () => {
+            const ship = {};
     
+            port.addShip(ship);
+    
+            expect(port.ships).toContain(ship);
+        });
+    
+    });
+
 })
