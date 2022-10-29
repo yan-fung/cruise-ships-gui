@@ -24,7 +24,7 @@ describe('Ship', () => {
         ships: []
       };
     
-      itinerary = new Itinerary([dover, calais]);
+      itinerary = {ports: [dover, calais]};
       ship = new Ship(itinerary);
     });
 
@@ -67,22 +67,22 @@ describe('setSail', () => {
       ships: []
     };
   
-    itinerary = new Itinerary([dover, calais]);
+    itinerary = {ports: [dover, calais]};
     ship = new Ship(itinerary);
 
-    ship.setSail();
+
   });
 
   it('can set sail', () => {
     
- 
+    ship.setSail();
 
     expect(ship.currentPort).toBeFalsy();
     expect(dover.removeShip).toHaveBeenCalledWith(ship);
   });
 
   it('it can\'t sail further than its itinerary', () => {
-    
+    ship.setSail();
     ship.dock();
 
     expect(() => ship.setSail()).toThrowError('End of itinerary reached');
@@ -113,7 +113,7 @@ describe('dock', () => {
       ships: []
     };
   
-    itinerary = new Itinerary([dover, calais]);
+    itinerary = {ports: [dover, calais]};
     ship = new Ship(itinerary);
 
     ship.setSail();
