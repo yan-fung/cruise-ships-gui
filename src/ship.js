@@ -13,10 +13,10 @@ class Ship{
         if (currentPortIndex === this.itinerary.ports.length -1){
             throw new Error('End of itinerary reached')
         }
-
-        this.previousPort = this.currentPort;
+        // this.currentPort = Dover;
+        this.previousPort = this.currentPort; //Previous port: Dover, Current port: Dover
         this.currentPort = null;
-        this.previousPort.removeShip();
+        this.previousPort.removeShip(this);
     }
 
     dock() {

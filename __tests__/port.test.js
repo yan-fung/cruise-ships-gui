@@ -53,9 +53,13 @@ describe('removeShip', () => {
     });
 
     it('can remove a ship from the port', () => {
-        port.removeShip();
+        port.removeShip(ship1);
 
         expect(port.ships).not.toContain(ship1);
+
+        port.removeShip(ship2);
+
+        expect(port.ships).not.toContain(ship2);
     });
 });
 
