@@ -11,14 +11,29 @@
 </head>
 <body>
     <div id="viewport">
+        <div id="ports">
+
+        </div>
     
     </div>
     
 
 
     <script src="./src/controller.js"></script>
+    <script src="./src/port.js"></script>
+    <script src="./src/itinerary.js"></script>
+
+
+
     <script>
         const controller = new Controller();
+        const itinerary = new Itinerary([
+            new Port('Hong Kong'),
+            new Port('Singapore'),
+            new Port('Tokyo'),
+            new Port('Busan')
+        ]);
+        controller.renderPorts(itinerary.ports);
     </script>
 </body>
 
