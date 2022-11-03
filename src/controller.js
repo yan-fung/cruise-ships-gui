@@ -17,8 +17,28 @@
                
                 backgroundIndex += 1;
             }, 1000);
-    
         };
+
+        renderPorts(ports) {
+            //set a width of 0 as we want JS to manipulate the width of this container every time we add a child element.
+            const portsElement = document.querySelector('#ports');
+            portsElement.style.width = '0px';
+
+            
+            ports.forEach((port, index) => {
+                // create element (div) for appending to the portsElement
+                const newPortElement = document.createElement('div');
+                newPortElement.className = 'port'; //assign a class to this div
+                newPortElement.dataset.portName = port.name;//set data attr for port name
+                newPortElement.dataset.portIndex = index;//set data attr for index
+
+                portsElement.appendChild(newPortElement);
+
+                //Add 256px to the #ports div every time a new port element is appended to it
+                const portsElementWidth = parseInt(portsElement.style.width, 10);
+                portsElement.style.width = `${portsElementWidth + 256}px`;
+            })
+        }
     
     };
 
