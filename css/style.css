@@ -34,8 +34,8 @@ body {
 }
 
 #ship {
-    width: 120px;
-    height: 70px;
+    width: 128px;
+    height: 64px;
     position: absolute;
     background-image: url('../images/ship.png');
 }
