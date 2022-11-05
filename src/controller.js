@@ -1,7 +1,11 @@
 (function exportController() {
     class Controller {
-        constructor() {
+        constructor(ship) {
             this.initialiseSea();
+            this.ship = ship;
+            document.querySelector('#sailbutton').addEventListener('click', () => {
+                this.setSail();
+            });
         }
     
     
@@ -38,15 +42,59 @@
                 const portsElementWidth = parseInt(portsElement.style.width, 10);
                 portsElement.style.width = `${portsElementWidth + 256}px`;
             })
-        }
+        };
 
-        renderShip(ship) {
+        renderShip() {
+            const ship = this.ship;
             const shipPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
             const portElement = document.querySelector(`[data-port-index='${shipPortIndex}']`);
 
             const shipElement = document.querySelector('#ship');
             shipElement.style.top = `${portElement.offsetTop + 32}px`;
             shipElement.style.left = `${portElement.offsetLeft - 32}px`;
+        };
+
+        setSail() {
+            const ship = this.ship;
+            // find the next port index so that we can use find its data attribute in DOM
+            const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
+            const nextPortIndex = currentPortIndex + 1;
+            const nextPortElement = document.querySelector(`[data-port-index='${nextPortIndex}']`);
+
+            const shipElement = document.querySelector('#ship');
+            const sailInterval = setInterval(() => {
+                const shipLeft = parseInt(shipElement.style.left, 10);
+                if (shipLeft === (nextPortElement.offsetLeft - 32)) {
+                    ship.setSail();
+                    ship.dock();
+                    this.renderMessage(`Now we are at ${ship.currentPort.name}`)
+                    clearInterval(sailInterval);
+                }
+
+                shipElement.style.left = `${shipLeft + 2}px`
+            }, 20);
+
+            // alert message popped up if the user attempts to go further than the itinerary
+            if (!nextPortElement) {
+                this.renderMessage('This is the final destination.')
+                return alert('End of the journey!');
+              }
+            
+            this.renderMessage(`Now we are departing ${ship.currentPort.name}`)
+
+        };
+
+        renderMessage(message) {
+            const messageElement = document.createElement('div');
+            messageElement.id = 'message';
+            messageElement.innerHTML = message;
+
+            const viewPort = document.querySelector('#viewport');
+            viewPort.appendChild(messageElement);
+
+            setTimeout(() => {
+                viewPort.removeChild(messageElement);
+            }, 2000);
 
         }
     
