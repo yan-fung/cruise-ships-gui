@@ -39,3 +39,36 @@ body {
     position: absolute;
     background-image: url('../images/ship.png');
 }
+
+#sailbutton {
+    border: 0;
+    width: 100%;
+    font-size: 28px;
+    color: rgb(231, 231, 238);
+    font-family: 'Russo One', sans-serif;
+    background-color: rgb(224, 10, 42);
+    position:absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom: 4px solid #8b5558;
+    cursor: pointer;
+}
+
+#sailbutton:focus {
+    background-color: #2bac40;
+    border-bottom-width: 0;
+    padding-top: 7px;
+    cursor: pointer;
+}
+
+#message{
+    border-top: 3px solid black;
+    padding: 10px;
+    width: 100%;
+    font-size: 20px;
+    color: rgb(224, 224, 237);
+    font-family: 'Russo One', sans-serif;
+    background-color: rgb(18, 16, 16);
+    position:absolute;
+    bottom: 0;
+}
