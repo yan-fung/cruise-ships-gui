@@ -13,6 +13,8 @@
 
 </head>
 <body>
+    <div id="display"></div>
+
     <div id="viewport">
         <div id="ports"></div>
         <div id="ship"></div>
@@ -20,9 +22,7 @@
         <button id="sailbutton">Set Sail!</button>
     </div>
 
-
-    
-
+    <button id="restart-btn">Restart</button>
 
     <script src="./src/controller.js"></script>
     <script src="./src/port.js"></script>
@@ -41,6 +41,7 @@
 
         controller.renderPorts(itinerary.ports);
         controller.renderShip();
+
 
 
 
