@@ -55,6 +55,7 @@
         };
 
         setSail() {
+
             const ship = this.ship;
             // find the next port index so that we can use find its data attribute in DOM
             const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
@@ -71,7 +72,7 @@
                     clearInterval(sailInterval);
                 }
 
-                shipElement.style.left = `${shipLeft + 2}px`
+                shipElement.style.left = `${shipLeft + 1.5}px`
             }, 20);
 
             // alert message popped up if the user attempts to go further than the itinerary
@@ -81,6 +82,8 @@
               }
             
             this.renderMessage(`Now we are departing ${ship.currentPort.name}`)
+
+            this.renderDisplay();
 
         };
 
@@ -97,6 +100,36 @@
             }, 2000);
 
         }
+
+        renderDisplay() {
+            
+            const ship = this.ship;
+            const currentPortElement = document.createElement('div');
+            const nextPortElement = document.createElement('div');
+
+            currentPortElement.id = 'current-port';
+            currentPortElement.innerHTML = `Current Port: ${ship.currentPort.name}`;
+
+            nextPortElement.id = 'next-port';
+            const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
+            const nextPortIndex = currentPortIndex + 1;
+            const nextPortName = itinerary.ports[nextPortIndex].name;
+            nextPortElement.innerHTML = `Next Port: ${nextPortName}`;
+
+
+            const displayElement = document.querySelector('#display');
+            displayElement.appendChild(currentPortElement);
+            displayElement.appendChild(nextPortElement);
+
+            setTimeout(() => {
+                displayElement.removeChild(currentPortElement);
+            }, 5000);
+
+            setTimeout(() => {
+                displayElement.removeChild(nextPortElement);
+            }, 5000);
+
+        }
     
     };
 
@@ -105,6 +138,10 @@
      } else {
        window.Controller = Controller;
      };
+
+     document.querySelector('#restart-btn').addEventListener('click', function () {
+        window.location.reload();
+     });
      
  } ());
  
