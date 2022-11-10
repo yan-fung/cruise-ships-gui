@@ -28,7 +28,8 @@
             const portsElement = document.querySelector('#ports');
             portsElement.style.width = '0px';
 
-            
+            portsElement.innerHTML = "";
+
             ports.forEach((port, index) => {
                 // create element (div) for appending to the portsElement
                 const newPortElement = document.createElement('div');
@@ -63,16 +64,18 @@
             const nextPortElement = document.querySelector(`[data-port-index='${nextPortIndex}']`);
 
             const shipElement = document.querySelector('#ship');
+
             const sailInterval = setInterval(() => {
-                const shipLeft = parseInt(shipElement.style.left, 10);
-                if (shipLeft === (nextPortElement.offsetLeft - 32)) {
+
+                const shipLeft = parseFloat(shipElement.style.left, 10);
+                if (shipLeft >= (nextPortElement.offsetLeft - 32)) {
                     ship.setSail();
                     ship.dock();
-                    this.renderMessage(`Now we are at ${ship.currentPort.name}`)
+                    this.renderMessage(`Now we are at ${ship.currentPort.name}`);
                     clearInterval(sailInterval);
                 }
 
-                shipElement.style.left = `${shipLeft + 1.5}px`
+                shipElement.style.left = `${shipLeft + 1}px`
             }, 20);
 
             // alert message popped up if the user attempts to go further than the itinerary
@@ -123,14 +126,12 @@
 
             setTimeout(() => {
                 displayElement.removeChild(currentPortElement);
-            }, 5000);
+            }, 8000);
 
             setTimeout(() => {
                 displayElement.removeChild(nextPortElement);
-            }, 5000);
-
+            }, 8000);
         }
-    
     };
 
     if (typeof module !== 'undefined' && module.exports) {
@@ -139,6 +140,7 @@
        window.Controller = Controller;
      };
 
+     //restart the ship's position
      document.querySelector('#restart-btn').addEventListener('click', function () {
         window.location.reload();
      });
