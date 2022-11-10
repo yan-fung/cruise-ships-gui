@@ -81,10 +81,69 @@ body {
     font-size: 28px;
     color: rgb(247, 247, 244);
     margin: 0;
-    padding-bottom: 50px;
     padding-left: 500px;
     font-family: 'Russo One', sans-serif;
+    background-color: #5d4841;
 }
+
+#container {
+    font-size: 128px;
+    color: rgb(247, 247, 244);
+    margin: 0;
+    font-family: 'Russo One', sans-serif;
+}
+
+#container {
+    color: aliceblue;
+    font-family: 'Russo One', sans-serif;
+    margin: 0;
+}
+
+#container, h2 {
+    color: rgb(233, 222, 222);
+    margin: 0;
+    padding-right: 700px;
+    font-family: 'Russo One', sans-serif;
+    
+}
+
+#form-text {
+    height: 35px;
+    border-radius: 6px;
+    font-family: 'Russo One', sans-serif;
+    font-size: 20px ;
+
+}
+
+#submit{
+    padding-top: 5px;
+    padding-bottom: 5px ;
+    padding-right: 20px;
+    padding-left: 20px;
+    color: rgb(19, 12, 3);
+    font-family: 'Russo One', sans-serif;
+    border-radius: 5px;
+    font-size: 20px;
+    margin-left: 0px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#set{
+    padding-top: 5px;
+    padding-bottom: 5px ;
+    padding-right: 20px;
+    padding-left: 20px;
+    color: rgb(19, 12, 3);
+    font-family: 'Russo One', sans-serif;
+    border-radius: 5px;
+    font-size: 20px;
+    margin-left: 0px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 
 
 #restart-btn {
