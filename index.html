@@ -13,14 +13,24 @@
 
 </head>
 <body>
-    <div id="display"></div>
+
+    <div class="container">
+        <h2>ADD PORT</h2>
+        <form id="form" action="index.html" method="post">
+            <input type="text" id="form-text" placeholder="Port name">
+            <input type="submit" id="submit" value="ADD"> 
+        </form>
+        <button id="set">SET ITINERARY</button>
+    </div>
+
+
 
     <div id="viewport">
         <div id="ports"></div>
         <div id="ship"></div>
-
         <button id="sailbutton">Set Sail!</button>
     </div>
+    <div id="display"></div>
 
     <button id="restart-btn">Restart</button>
 
@@ -30,24 +40,44 @@
     <script src="./src/ship.js"></script>
 
     <script>
+
+        // set the empty array for user input
         const itinerary = new Itinerary([
-            new Port('Hong Kong'),
-            new Port('Singapore'),
-            new Port('Tokyo'),
-            new Port('Busan')
+            // new Port('Hong Kong'),
+            // new Port('Singapore'),
+            // new Port('Tokyo'),
+            // new Port('Busan')
         ]);
-        const ship = new Ship(itinerary);
-        const controller = new Controller(ship);
+  
+        //Take the user input to create port
+        function submitPorts(event) {
+        event.preventDefault();
 
-        controller.renderPorts(itinerary.ports);
-        controller.renderShip();
+        const newPort = event.target[0].value;
+
+        if ( newPort === "" ) {
+            alert('Please enter a port name :)')
+        } else {
+            itinerary.ports.push(new Port(newPort));
+            event.target[0].value = "";
+          }
+        };
+      
+        document.getElementById('form').addEventListener('submit', submitPorts);
+
+        //Create itinerary
+        function prepareItinerary() {
+            const ship = new Ship(itinerary);
+            const controller = new Controller(ship);
+            controller.renderPorts(itinerary.ports);
+            controller.renderShip();
+        }
+        document.getElementById('set').addEventListener('click', prepareItinerary);
 
 
-
-
-
+     
 
     </script>
-</body>
+ </body>
 
 </html>
